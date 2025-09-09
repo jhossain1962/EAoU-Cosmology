@@ -6,7 +6,7 @@ authors:
 title: "EAoU Cosmology χ² Fitting Framework"
 version: "1.0"
 date-released: "2025-09-09"
-url: "https://github.com/jhossain1962/EAoU-Cosmology/upload/main"
+url: "https://github.com/jhossain1962/EAoU-Cosmology"
 license: "MIT"
 description: >
   Analysis code for fitting luminosity distance–redshift relations under
