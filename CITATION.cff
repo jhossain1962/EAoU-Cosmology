@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Hossain"
+    given-names: "Jami"
+title: "EAoU Cosmology χ² Fitting Framework"
+version: "1.0"
+date-released: "2025-09-09"
+url: "https://github.com/jhossain1962/EAoU-Cosmology/upload/main"
+license: "MIT"
+description: >
+  Analysis code for fitting luminosity distance–redshift relations under
+  ΛCDM and Effective Age of the Universe (EAoU) models. Implements χ²
+  minimization with analytic marginalization over μ₀, using Pantheon+SH0ES,
+  GRB, and quasar datasets (4284 probes in total).
+preferred-citation:
+  type: article
+  title: "Beyond the Comoving Frame: Effective Age of the Universe and its Empirical Validation Across 4284 Cosmological Probes"
+  authors:
+    - family-names: "Hossain"
+      given-names: "Jami"
+  journal: "Submitted to EPJC"
+  year: 2025
