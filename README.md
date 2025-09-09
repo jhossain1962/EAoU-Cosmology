@@ -1,96 +1,104 @@
-# EAoU-4 Cosmology Pipeline
+# EAoU-Cosmology
 
-This repository provides the analysis code for the paper:  
-**“The Effective Age of the Universe (EAoU): Empirical Validation with Supernovae, GRBs, and Quasars.”**
+Code and data framework for the **Effective Age of the Universe (EAoU)** cosmology model.  
+This repository provides tools for χ² fitting, model comparison, and residual analysis across multiple cosmological probes, including **Supernovae (Pantheon+ SH0ES), Gamma-Ray Bursts (GRBs), and Quasars**.
 
-It implements χ² fitting of luminosity distance–redshift relations under both the standard ΛCDM and the EAoU formulations.
-
----
-
-## 📌 Features
-- Fits **ΛCDM** (Ωₘ) and **EAoU** (Ωₘ, α).  
-- Analytic marginalization over the nuisance parameter μ₀ (removes H₀/absolute magnitude dependence).  
-- Reports χ², χ²/ν, Δχ², AIC, BIC.  
-- Provides redshift histograms and residual plots for each dataset.  
-- Works with SNe Ia, GRBs, and Quasars, with optional BAO and H(z) chronometers.
+EAoU extends ΛCDM by introducing a relativistic time-dilation correction exponent α, yielding an **effective cosmic age of ~45 Gyr** and resolving multiple cosmological tensions.
 
 ---
 
-## 📂 Data Schema
+## 📖 Overview
 
-The notebook expects input data in CSV format with the following columns:
+The repository contains:
+- **EAoU_chi2_fit.ipynb** – Jupyter notebook implementing ΛCDM vs EAoU χ² fits, AIC/BIC comparisons, and residual plots.
+- **requirements.txt** – Dependencies for running the notebook.
+- **README.md** – Documentation (this file).
+- **LICENSE** – MIT License with citation requirement.
+- **CITATION.cff** – Machine-readable citation metadata for GitHub’s “Cite this repository” feature.
+
+---
+
+## ⚙️ Installation
+
+Clone this repository and install dependencies:
+
+```bash
+git clone https://github.com/jhossain1962/EAoU-Cosmology.git
+cd EAoU-Cosmology
+pip install -r requirements.txt
+```
+
+Dependencies include:
+- `numpy`
+- `pandas`
+- `matplotlib`
+- `scipy` (optional, for optimization)
+
+---
+
+## 🚀 Usage
+
+Open the Jupyter notebook and run analyses:
+
+```bash
+jupyter notebook EAoU_chi2_fit.ipynb
+```
+
+The notebook provides:
+- χ² fits for **ΛCDM** and **EAoU**  
+- Residual plots for SNe data  
+- AIC/BIC information criteria for model selection  
+- Support for Pantheon+ SNe, BAO, and chronometer data (via CSVs in `./data/`)  
+
+### Input Data Schema
+
+For supernovae, the expected CSV format is:
 
 ```
 ID, z, mu, sigma_mu, source
 ```
 
-- **ID** → unique object identifier (e.g., `SN1998aq`, `GRB050904`, `QSO_J1148+5251`)  
-- **z** → redshift  
-- **mu** → distance modulus  
-  \[
-  \mu = m - M = 5 \log_{10}\left(\frac{D_L}{\text{Mpc}}\right) + 25
-  \]  
-- **sigma_mu** → uncertainty in the distance modulus  
-- **source** → dataset origin (e.g., `Pantheon+`, `SH0ES`, `Amati2008`, `Risaliti2019`)
+- `ID`: Object identifier (e.g., SN name)  
+- `z`: Redshift  
+- `mu`: Distance modulus  
+- `sigma_mu`: Uncertainty in `mu`  
+- `source`: Reference catalog (e.g., Pantheon+, GRB dataset, Quasar sample)  
 
-### Example rows:
-```
-SN1998aq, 0.0039, 32.23, 0.15, Pantheon+
-GRB050904, 6.29, 48.12, 0.35, Amati2008
-QSO_J1148+5251, 6.42, 47.95, 0.30, Risaliti2019
-```
+Example datasets will be added in the `data/` folder.
 
 ---
 
-## 🚀 Quick Start
+## 📊 Example Analysis
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/<your-username>/EAoU-4.git
-   cd EAoU-4
-   ```
-
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Launch Jupyter Notebook and open:
-   ```bash
-   jupyter notebook EAoU_chi2_fit.ipynb
-   ```
-
-4. Ensure your CSV datasets are in the same folder (or update the file paths inside the notebook).
-
----
-
-## 🔬 Methodology
-
-- **ΛCDM fit:** Brent’s bounded scalar minimization.  
-- **EAoU fit:** L-BFGS-B optimization with bounds on (Ωₘ, α).  
-- **Marginalization:** μ₀ (absolute magnitude/H₀ offset) is marginalized analytically following Conley et al. (2011) and Brout et al. (2022).  
-
----
-
-## 📊 Reproducibility
-
-- Absolute calibration (H₀) is absorbed into μ₀ and does not affect results.  
-- Δχ², AIC, and BIC are reported for model comparison.  
-- Figures include redshift distributions and Hubble residuals.  
-
----
-
-## 📖 Citation
-
-If you use this code or results, please cite:
-
-- Hossain, J. (2025). *The Effective Age of the Universe (EAoU): Empirical Validation with Supernovae, GRBs, and Quasars.* Preprints, DOI: [10.20944/preprints202508.0758.v1](https://doi.org/10.20944/preprints202508.0758.v1)  
-- Brout, D., et al. (2022). *The Pantheon+ Analysis: Cosmological Constraints.* ApJ, 938, 110.  
-- Conley, A., et al. (2011). *Supernova Constraints and μ₀ Marginalization.* ApJS, 192, 1.  
-- Byrd, R.H., Lu, P., Nocedal, J., & Zhu, C. (1995). *A Limited Memory Algorithm for Bound Constrained Optimization.* SIAM J. Sci. Comput. 16(5), 1190–1208.  
+- Compare EAoU vs ΛCDM fits for Pantheon+ data  
+- Generate residual plots (μ_obs − μ_model vs z)  
+- Compute effective cosmic age under EAoU  
 
 ---
 
 ## 📜 License
 
-This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
+This project is licensed under the **MIT License** (see `LICENSE` file).  
+If you use this software in **scientific work or publications**, please **cite it** (see below).
+
+---
+
+## 📑 Citation
+
+If you use this repository, please cite:
+
+**Jami Hossain (2025).**  
+*Beyond the Comoving Frame: Effective Age of the Universe and its Empirical Validation Across 4284 Cosmological Probes.*  
+Submitted to *The European Physical Journal C (EPJC)*.  
+
+Citation metadata is also included in the file `CITATION.cff`, and can be accessed via GitHub’s **“Cite this repository”** option.
+
+---
+
+## 🔮 Future Work
+
+- Extend EAoU analysis to **BAO** and **CMB** datasets  
+- Explore implications for structure formation and cosmic chronometers  
+- Release versioned datasets for reproducibility  
+
+---
